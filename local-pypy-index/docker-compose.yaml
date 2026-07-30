@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  pypiserver:
+    image: pypiserver/pypiserver:latest
+    container_name: local-python-index
+    ports:
+      - "8080:8080"
+    networks:
+      - pypi-network
+    volumes:
+      - ./.htpasswd:/data/.htpasswd:ro
+    command: run -P /data/.htpasswd --fallback-url https://pypi.org/simple/
+
+  pypi-web-ui:
+    image: python:3.11-slim
+    container_name: pypi-frontend
+    ports:
+      - "8081:8000"  # UI served at http://localhost:8081
+    environment:
+      - REPOSITORY_URL=$${REPOSITORY_URL}
+    networks:
+      - pypi-network
+    command: >
+      sh -c "pip install --no-cache-dir simple-repository-browser uvicorn && 
+             python -m simple_repository_browser http://$${FRONTEND_USER}:$${FRONTEND_PASSWORD}@local-python-index:8080/simple/ --host 0.0.0.0 --port 8000"
+    depends_on:
+      - pypiserver
+    restart: unless-stopped
+
+networks:
+  pypi-network:
+    driver: bridge
