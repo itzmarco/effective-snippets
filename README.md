@@ -1,6 +1,6 @@
 # effective-snippets
 
-A small collection of snippets, helpers, and quick experiments. This repository is intentionally practical rather than polished: it holds useful ideas and examples that may be rough, incomplete, or only lightly tested.
+A small collection of snippets, helpers, and quick experiments. This repository is intentionally practical rather than polished: it holds useful ideas and examples that may be rough, and only lightly tested - but they work.
 
 ## Table of Contents
 
