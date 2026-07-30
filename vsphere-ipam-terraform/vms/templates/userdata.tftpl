@@ -1,0 +1,33 @@
+#cloud-config
+manage_etc_hosts: true
+users:
+  - name: ubuntu
+    passwd: ${user_password_hash}
+    lock_passwd: false
+    groups: [sudo]
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ${ssh_key}
+
+write_files:
+    - path: /etc/sysctl.d/99-k8s.conf
+      content: |
+          net.bridge.bridge-nf-call-iptables = 1
+          net.bridge.bridge-nf-call-ip6tables = 1
+          net.ipv4.ip_forward = 1
+
+    - path: /etc/modules-load.d/k8s.conf
+      content: |
+          br_netfilter
+
+packages:
+  - curl
+  - nettools
+
+runcmd:
+  - modprobe br_netfilter
+  - sysctl --system
+  - swapoff -a
+  - sed -i '/swap/d' /etc/fstab
+  - echo "done" > /tmp/cloud-config.done

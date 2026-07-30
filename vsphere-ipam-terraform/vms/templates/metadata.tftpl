@@ -1,0 +1,19 @@
+#cloud-config
+local-hostname: ${hostname}
+# ---
+network:
+  version: 2
+  ethernets:
+    ens192:
+      dhcp4: false
+      addresses:
+        - ${ip_address}/24
+      routes:
+        - to: default
+          via: ${gateway}
+      nameservers:
+        addresses:
+        - 8.8.8.8
+        - 8.8.4.4
+        - 1.1.1.1
+        - 1.0.0.1
