@@ -2,18 +2,6 @@
 
 A practical Terraform/Terragrunt example for managing vSphere infrastructure in two related steps: IP allocation and VM provisioning. It can work as-is for small setups, but the main idea is to use it as a backbone for creating VMs for a Kubernetes cluster.
 
-## Table of Contents
-
-- [vSphere IPAM Terraform](#vsphere-ipam-terraform)
-  - [Table of Contents](#table-of-contents)
-  - [What this snippet is for](#what-this-snippet-is-for)
-  - [Requirements](#requirements)
-  - [Structure](#structure)
-  - [How to use it](#how-to-use-it)
-  - [Terragrunt workflow](#terragrunt-workflow)
-  - [Assumptions](#assumptions)
-  - [Notes on safety and reuse](#notes-on-safety-and-reuse)
-
 ## What this snippet is for
 
 This folder is useful when you want a simple but structured way to:
