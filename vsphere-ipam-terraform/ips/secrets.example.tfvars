@@ -1,0 +1,5 @@
+phpipam_user     = "###"
+phpipam_password = "###"
+phpipam_address  = "###"
+phpipam_app_id   = "###"
+phpipam_subnet   = "###"
