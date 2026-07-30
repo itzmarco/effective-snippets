@@ -20,6 +20,7 @@ The focus is on usefulness, speed, and keeping good ideas easy to find. Some pie
 ## Repository layout
 
 - [local-pypy-index](local-pypy-index): a small local PyPI mirror setup using Docker
+- [vsphere-ipam-terraform](vsphere-ipam-terraform): Terraform snippet for IP allocation and VM provisioning patterns
 
 ## How to use these snippets
 
